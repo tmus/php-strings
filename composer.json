@@ -1,0 +1,24 @@
+{
+    "name": "tommus/deck",
+    "description": "Package for creating and manipulating a deck of playing cards.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Smith",
+            "email": "me@tomm.us",
+            "homepage": "https://tomm.us",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tommus\\": "src/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": "^7"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests/"
+    }
+}
