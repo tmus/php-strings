@@ -1,6 +1,6 @@
 {
-    "name": "tommus/deck",
-    "description": "Package for creating and manipulating a deck of playing cards.",
+    "name": "tommus/strings",
+    "description": "An object oriented solution to strings in php.",
     "license": "MIT",
     "authors": [
         {
