@@ -149,13 +149,6 @@ class StringTest extends TestCase
         $this->assertEquals(4, $string->length());
     }
 
-    public function testCanGetImplicitLength() : void
-    {
-        $string = Stringo::from('four');
-
-        $this->assertCount(4, $string);
-    }
-
     public function testCanMatchRegex() : void
     {
         // TODO
@@ -215,5 +208,18 @@ class StringTest extends TestCase
     {
         $this->assertEquals('LOUD NOISES', Stringo::from('loud noises')->upcase());
         $this->assertEquals('LOUD NOISES', Stringo::from('loud noises')->uppercase());
+    }
+
+    public function testCanCheckIsEmpty() : void
+    {
+        $this->assertTrue(Stringo::from(null)->isEmpty());
+        $this->assertTrue(Stringo::from('')->isEmpty());
+        $this->assertFalse(Stringo::from('test')->isEmpty());
+    }
+
+    public function testCanCheckIsNotEmpty() : void
+    {
+        $this->assertTrue(Stringo::from('test')->isNotEmpty());
+        $this->assertFalse(Stringo::from(null)->isNotEmpty());
     }
 }

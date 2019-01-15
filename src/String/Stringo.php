@@ -12,7 +12,7 @@ class Stringo
     /**
      * Construct.
      */
-    public function __construct(string $string)
+    public function __construct($string)
     {
         $this->string = $string;
     }
@@ -22,7 +22,7 @@ class Stringo
      *
      *   `Stringo::from('test')->capitalize();`
      */
-    public static function from(string $string) : self
+    public static function from($string) : self
     {
         return new self($string);
     }
@@ -58,6 +58,15 @@ class Stringo
      */
     public function graphemes() : array
     {
+        $pieces = str_split($this);
+
+        // Splitting an empty or null string returns an array with
+        // one item - an empty string. If this is the case,
+        // return an empty array instead.
+        if (count($pieces) === 1 && $pieces[0] === '') {
+            return [];
+        }
+
         return str_split($this);
     }
 
@@ -247,11 +256,27 @@ class Stringo
     }
 
     /**
+     * Determine if a string is empty.
+     */
+    public function isEmpty() : bool
+    {
+        return $this->length() === 0;
+    }
+
+    /**
+     * Determine if a string is not empty.
+     */
+    public function isNotEmpty() : bool
+    {
+        return ! $this->isEmpty();
+    }
+
+    /**
      * Returns the object as a string.
      */
     public function __toString()
     {
-        return $this->string;
+        return $this->string ?? '';
     }
 
     /**
