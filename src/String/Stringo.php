@@ -231,6 +231,11 @@ class Stringo
         return $returnedArray;
     }
 
+    public function words(string $character = ' ') : array
+    {
+        return $this->split($character);
+    }
+
     /**
      * Casts a string to an integer.
      */
@@ -269,6 +274,41 @@ class Stringo
     public function isNotEmpty() : bool
     {
         return ! $this->isEmpty();
+    }
+
+    /**
+     * Generates a random string.
+     */
+    public function generateRandom($length = 32) : self
+    {
+        $string = bin2hex(random_bytes($length));
+        $string = substr($string, 0, $length);
+        return new self($string);
+    }
+
+    /**
+     * Formats the string nicely for a headline or subtitle.
+     */
+    public function titleCase(bool $all = false, array $nonCapitalized = null) : self
+    {
+        $ucwords = new self(ucwords($this));
+
+        // If the `$all` flag is set to true, just return
+        // a string with all words capitalized.
+        if ($all === true) {
+            return $ucwords;
+        }
+
+        $toLower = $nonCapitalized
+            ?? ['A', 'An', 'And', 'The', 'But', 'For', 'Or', 'Of', 'Nor'];
+
+        $words = array_map(function ($word) use ($toLower) {
+            return in_array($word, $toLower) ? strtolower($word) : $word;
+        }, $ucwords->split());
+
+        $words = implode(' ', $words);
+
+        return new self($words);
     }
 
     /**

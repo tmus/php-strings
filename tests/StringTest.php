@@ -222,4 +222,16 @@ class StringTest extends TestCase
         $this->assertTrue(Stringo::from('test')->isNotEmpty());
         $this->assertFalse(Stringo::from(null)->isNotEmpty());
     }
+
+    public function testCanGenerateRandom() : void
+    {
+        $this->assertTrue(Stringo::from(null)->generateRandom()->isNotEmpty());
+        $this->assertEquals(16, Stringo::from(null)->generateRandom(16)->length());
+    }
+
+    public function testCanGetTitleCase() : void
+    {
+        $this->assertEquals("It's the End of the World!", Stringo::from("it's the end of the world!")->titleCase());
+        $this->assertEquals("It's The End Of The World!", Stringo::from("it's the end of the world!")->titleCase(true));
+    }
 }
