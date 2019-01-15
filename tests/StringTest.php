@@ -190,7 +190,11 @@ class StringTest extends TestCase
 
     public function testCanCheckStartsWith() : void
     {
-        // TODO
+        $string = Stringo::from('kingdom');
+
+        $this->assertTrue($string->startsWith('king'));
+        $this->assertTrue($string->startsWith(['king', 'queen']));
+        $this->assertFalse($string->endsWith(['prince', 'princess']));
     }
 
     public function testCanCastToInteger() : void
@@ -201,7 +205,9 @@ class StringTest extends TestCase
 
     public function testCanTrim() : void
     {
-        // TODO trim trimLeading trimTrailing
+        $this->assertEquals('trimmed  ', Stringo::from('   trimmed  ')->leftTrim());
+        $this->assertEquals('  trimmed', Stringo::from('  trimmed')->rightTrim());
+        $this->assertEquals('trimmed', Stringo::from('   trimmed    ')->trim());
     }
 
     public function testCanUpcase() : void

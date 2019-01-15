@@ -122,6 +122,28 @@ class Stringo
     }
 
     /**
+     * Determine if a string starts with a given value.
+     */
+    public function startsWith($values) : bool
+    {
+        if (! is_array($values)) {
+            $values = [$values];
+        }
+
+        /**
+         * If the strpos of a value is zero, it must occur
+         * at the beginning of the string.
+         */
+        foreach($values as $value) {
+            if (strpos($this, $value) === 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Determine if a string ends with a given value.
      */
     public function endsWith($values) : bool
@@ -309,6 +331,30 @@ class Stringo
         $words = implode(' ', $words);
 
         return new self($words);
+    }
+
+    /**
+     * Remove whitespace from both sides of the string.
+     */
+    public function trim() : self
+    {
+        return new self(trim($this));
+    }
+
+    /**
+     * Remove whitespace from the left side of the string.
+     */
+    public function leftTrim() : self
+    {
+        return new self(ltrim($this));
+    }
+
+    /**
+     * Remove whitespace from the right side of the string.
+     */
+    public function rightTrim() : self
+    {
+        return new self(rtrim($this));
     }
 
     /**
