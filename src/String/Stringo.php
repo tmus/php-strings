@@ -384,9 +384,28 @@ class Stringo
     }
 
     /**
+     * Converts a string to a `snake_case` representation.
+     */
+    public function snake() : self
+    {
+        $string = preg_replace_callback('/[A-Z]/', function ($match) {
+            return '_' . $match[0];
+        }, (string) $this);
+
+        $string = new self($string);
+
+        if ((string) $string->first() === '_') {
+            // TODO: Replace with `removeGrapheme(0)` when implemented.
+            $string = $string->slice(1)[1];
+        }
+
+        return static::fromDowncase($string);
+    }
+
+    /**
      * Returns the object as a string.
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->string ?? '';
     }

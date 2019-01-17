@@ -254,9 +254,12 @@ class StringTest extends TestCase
     // {
     // }
 
-    // public function testCanGetSnakeCase() : void
-    // {
-    // }
+    public function testCanGetSnakeCase() : void
+    {
+        $this->assertEquals('studly_caps', Stringo::from('StudlyCaps')->snake());
+        $this->assertEquals('camel_case', Stringo::from('camelCase')->snake());
+        // TODO: Could probably do with a few more examples.
+    }
 
     // public function testCanGetKebabCase() : void
     // {
