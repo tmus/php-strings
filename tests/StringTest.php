@@ -62,6 +62,13 @@ class StringTest extends TestCase
         $this->assertCount(9, $string->graphemes());
     }
 
+    public function testCanRemoveGraphemeAtPosition() : void
+    {
+        $string = Stringo::from('tommy');
+
+        $this->assertEquals('tomy', $string->removeGrapheme(2));
+    }
+
     /**
      * String.contains?
      */

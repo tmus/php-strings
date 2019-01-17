@@ -37,6 +37,16 @@ class Stringo
     }
 
     /**
+     * Removes the grapheme at the given position.
+     */
+    public function removeGrapheme(int $position) : self
+    {
+        $graphemes = $this->graphemes();
+        unset($graphemes[$position]);
+        return new self(implode('', $graphemes));
+    }
+
+    /**
      * Turns a string into lowercase with an uppercase first letter.
      */
     public function capitalize() : self
