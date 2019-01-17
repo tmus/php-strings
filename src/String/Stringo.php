@@ -406,7 +406,7 @@ class Stringo
 
         if ((string) $string->first() === $character) {
             // TODO: Replace with `removeGrapheme(0)` when implemented.
-            $string = $string->slice(1)[1];
+            $string = $string->removeGrapheme(0);
         }
 
         return static::fromDowncase($string);
