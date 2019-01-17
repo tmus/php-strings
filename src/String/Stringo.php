@@ -386,20 +386,28 @@ class Stringo
     /**
      * Converts a string to a `snake_case` representation.
      */
-    public function snake() : self
+    public function snake(string $character = '_') : self
     {
-        $string = preg_replace_callback('/[A-Z]/', function ($match) {
-            return '_' . $match[0];
+        $string = preg_replace_callback('/[A-Z]/', function ($match) use ($character) {
+            return $character . $match[0];
         }, (string) $this);
 
         $string = new self($string);
 
-        if ((string) $string->first() === '_') {
+        if ((string) $string->first() === $character) {
             // TODO: Replace with `removeGrapheme(0)` when implemented.
             $string = $string->slice(1)[1];
         }
 
         return static::fromDowncase($string);
+    }
+
+    /**
+     * Converts a string to a `kebab-case` representation.
+     */
+    public function kebab() : self
+    {
+        return $this->snake('-');
     }
 
     /**
