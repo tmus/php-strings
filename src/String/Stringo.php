@@ -89,6 +89,18 @@ class Stringo
     }
 
     /**
+     * Determine if a string matches a given regex pattern.
+     */
+    public function matches(string $regex) : bool
+    {
+        $match = preg_match($regex, $this);
+
+        return $match === 1
+            ? true
+            : false;
+    }
+
+    /**
      * Turns a string into lowercase.
      */
     public function downcase() : self

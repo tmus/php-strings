@@ -151,7 +151,9 @@ class StringTest extends TestCase
 
     public function testCanMatchRegex() : void
     {
-        // TODO
+        // TODO: These tests probably aren't complete. But it's ok for now.
+        $this->assertTrue(Stringo::from('foo')->matches('/foo/'));
+        $this->assertFalse(Stringo::from('bar')->matches('/foo/'));
     }
 
     public function testCanPad() : void

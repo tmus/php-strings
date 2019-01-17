@@ -4,6 +4,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Tommus\String\Stringo;
 
-$string = (bool) Stringo::from(null)->length();
+$string = Stringo::fromSplit('WHAT THE');
 
 var_dump($string);
