@@ -176,9 +176,14 @@ class StringTest extends TestCase
         $this->assertEquals('olleh', $string->reverse());
     }
 
-    // public function testCanSlice() : void
-    // {
-    // }
+    public function testCanSlice() : void
+    {
+        $string = Stringo::from('hello world');
+
+        $this->assertEquals(['', 'hello world'], $string->slice(0));
+        $this->assertEquals(['hello', ' world'], $string->slice(5));
+        $this->assertEquals(['he', 'llo world'], $string->slice(2));
+    }
 
     public function testCanSplit() : void
     {

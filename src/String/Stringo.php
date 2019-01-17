@@ -111,6 +111,20 @@ class Stringo
     }
 
     /**
+     * Slices a string into two pieces at a position.
+     */
+    public function slice(int $position) : array
+    {
+        $firstSlice = substr($this, 0, $position);
+        $secondSlice = substr($this, $position);
+
+        return [
+            $firstSlice,
+            $secondSlice,
+        ];
+    }
+
+    /**
      * Turns a string into lowercase.
      */
     public function lowercase() : self
