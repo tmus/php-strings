@@ -165,10 +165,9 @@ class StringTest extends TestCase
         $this->assertEquals('test!', $string->padRight(5, '!'));
     }
 
-    public function testCanReplaceSubstring() : void
-    {
-        // TODO
-    }
+    // public function testCanReplaceSubstring() : void
+    // {
+    // }
 
     public function testCanBeReversed() : void
     {
@@ -177,10 +176,9 @@ class StringTest extends TestCase
         $this->assertEquals('olleh', $string->reverse());
     }
 
-    public function testCanSlice() : void
-    {
-        // TODO
-    }
+    // public function testCanSlice() : void
+    // {
+    // }
 
     public function testCanSplit() : void
     {
@@ -242,4 +240,20 @@ class StringTest extends TestCase
         $this->assertEquals("It's the End of the World!", Stringo::from("it's the end of the world!")->titleCase());
         $this->assertEquals("It's The End Of The World!", Stringo::from("it's the end of the world!")->titleCase(true));
     }
+
+    // public function testCanGetCamelCase() : void
+    // {
+    // }
+
+    // public function testCanGetStudlyCase() : void
+    // {
+    // }
+
+    // public function testCanGetSnakeCase() : void
+    // {
+    // }
+
+    // public function testCanGetKebabCase() : void
+    // {
+    // }
 }
