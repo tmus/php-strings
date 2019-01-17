@@ -37,6 +37,16 @@ class Stringo
     }
 
     /**
+     * Removes the grapheme at the given position.
+     */
+    public function removeGrapheme(int $position) : self
+    {
+        $graphemes = $this->graphemes();
+        unset($graphemes[$position]);
+        return new self(implode('', $graphemes));
+    }
+
+    /**
      * Turns a string into lowercase with an uppercase first letter.
      */
     public function capitalize() : self
@@ -108,6 +118,20 @@ class Stringo
         $string = strtolower($this);
 
         return new self($string);
+    }
+
+    /**
+     * Slices a string into two pieces at a position.
+     */
+    public function slice(int $position) : array
+    {
+        $firstSlice = substr($this, 0, $position);
+        $secondSlice = substr($this, $position);
+
+        return [
+            $firstSlice,
+            $secondSlice,
+        ];
     }
 
     /**
@@ -370,9 +394,36 @@ class Stringo
     }
 
     /**
+     * Converts a string to a `snake_case` representation.
+     */
+    public function snake(string $character = '_') : self
+    {
+        $string = preg_replace_callback('/[A-Z]/', function ($match) use ($character) {
+            return $character . $match[0];
+        }, (string) $this);
+
+        $string = new self($string);
+
+        if ((string) $string->first() === $character) {
+            // TODO: Replace with `removeGrapheme(0)` when implemented.
+            $string = $string->removeGrapheme(0);
+        }
+
+        return static::fromDowncase($string);
+    }
+
+    /**
+     * Converts a string to a `kebab-case` representation.
+     */
+    public function kebab() : self
+    {
+        return $this->snake('-');
+    }
+
+    /**
      * Returns the object as a string.
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->string ?? '';
     }

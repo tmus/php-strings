@@ -62,6 +62,13 @@ class StringTest extends TestCase
         $this->assertCount(9, $string->graphemes());
     }
 
+    public function testCanRemoveGraphemeAtPosition() : void
+    {
+        $string = Stringo::from('tommy');
+
+        $this->assertEquals('tomy', $string->removeGrapheme(2));
+    }
+
     /**
      * String.contains?
      */
@@ -176,9 +183,14 @@ class StringTest extends TestCase
         $this->assertEquals('olleh', $string->reverse());
     }
 
-    // public function testCanSlice() : void
-    // {
-    // }
+    public function testCanSlice() : void
+    {
+        $string = Stringo::from('hello world');
+
+        $this->assertEquals(['', 'hello world'], $string->slice(0));
+        $this->assertEquals(['hello', ' world'], $string->slice(5));
+        $this->assertEquals(['he', 'llo world'], $string->slice(2));
+    }
 
     public function testCanSplit() : void
     {
@@ -249,11 +261,17 @@ class StringTest extends TestCase
     // {
     // }
 
-    // public function testCanGetSnakeCase() : void
-    // {
-    // }
+    public function testCanGetSnakeCase() : void
+    {
+        $this->assertEquals('studly_caps', Stringo::from('StudlyCaps')->snake());
+        $this->assertEquals('camel_case', Stringo::from('camelCase')->snake());
+        // TODO: Could probably do with a few more examples.
+    }
 
-    // public function testCanGetKebabCase() : void
-    // {
-    // }
+    public function testCanGetKebabCase() : void
+    {
+        $this->assertEquals('studly-caps', Stringo::from('StudlyCaps')->kebab());
+        $this->assertEquals('camel-case', Stringo::from('camelCase')->kebab());
+        // TODO: Add more examples here too.
+    }
 }
