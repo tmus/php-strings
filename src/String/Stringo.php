@@ -282,7 +282,7 @@ class Stringo
 
         foreach($array as $value) {
             if ($value !== '') {
-                $returnedArray[] = $value;
+                $returnedArray[] = new self($value);
             }
         }
 
