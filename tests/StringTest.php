@@ -146,6 +146,20 @@ class StringTest extends TestCase
         $this->assertEquals('g', $string->last());
     }
 
+    public function testCanGetFirstWord() : void
+    {
+        $string = Stringo::from('prestige wordwide');
+
+        $this->assertEquals('prestige', $string->firstWord());
+    }
+
+    public function testCanGetLastWord() : void
+    {
+        $string = Stringo::from('hello world');
+
+        $this->assertEquals('world', $string->lastWord());
+    }
+
     /**
      * String.length
      */
