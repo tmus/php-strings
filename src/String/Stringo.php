@@ -289,9 +289,32 @@ class Stringo
         return $returnedArray;
     }
 
+    /**
+     * Returns an array of the words in a string.
+     */
     public function words(string $character = ' ') : array
     {
         return $this->split($character);
+    }
+
+    /**
+     * Returns the first word in a string.
+     */
+    public function firstWord() : self
+    {
+        return $this->words()[0];
+    }
+
+    /**
+     * Returns the last word in a string.
+     */
+    public function lastWord() : self
+    {
+        $words = $this->words();
+
+        $arrayLength = count($words);
+
+        return $words[$arrayLength - 1];
     }
 
     /**
