@@ -428,7 +428,6 @@ class Stringo
         $string = new self($string);
 
         if ((string) $string->first() === $character) {
-            // TODO: Replace with `removeGrapheme(0)` when implemented.
             $string = $string->removeGrapheme(0);
         }
 
