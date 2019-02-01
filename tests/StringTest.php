@@ -117,6 +117,9 @@ class StringTest extends TestCase
         $this->assertTrue($string->endsWith('dom'));
         $this->assertTrue($string->endsWith(['tom', 'dom']));
         $this->assertFalse($string->endsWith(['tom', 'lucy']));
+
+        $string = Stringo::from('22');
+        $this->assertTrue($string->endsWith(2));
     }
 
     /**

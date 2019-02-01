@@ -197,7 +197,7 @@ class Stringo
          */
         foreach($values as $value) {
             $endIndex = $thisLength - strlen($value);
-            $position = strrpos($this, $value);
+            $position = strrpos($this, (string) $value);
 
             if ($endIndex === $position) {
                 return true;
