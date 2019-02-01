@@ -79,6 +79,10 @@ class StringTest extends TestCase
         $this->assertTrue($string->contains('cool'));
         $this->assertTrue($string->contains(['cool', 'piff']));
         $this->assertFalse($string->contains(['lame', 'rubbish']));
+
+        $string2 = Stringo::from('22');
+
+        $this->assertTrue($string2->contains(22));
     }
 
     /**

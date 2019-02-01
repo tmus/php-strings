@@ -89,8 +89,8 @@ class Stringo
             $values = [$values];
         }
 
-        foreach($values as $value) {
-            if (strpos($this, $value) !== false) {
+        foreach ($values as $value) {
+            if (strpos($this, (string) $value) !== false) {
                 return true;
             }
         }
