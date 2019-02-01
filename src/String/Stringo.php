@@ -129,8 +129,8 @@ class Stringo
         $secondSlice = substr($this, $position);
 
         return [
-            $firstSlice,
-            $secondSlice,
+            new self($firstSlice),
+            new self($secondSlice),
         ];
     }
 

@@ -201,6 +201,8 @@ class StringTest extends TestCase
     {
         $string = Stringo::from('hello world');
 
+        $this->assertInstanceOf(Stringo::class, $string->slice(4)[0]);
+
         $this->assertEquals(['', 'hello world'], $string->slice(0));
         $this->assertEquals(['hello', ' world'], $string->slice(5));
         $this->assertEquals(['he', 'llo world'], $string->slice(2));
