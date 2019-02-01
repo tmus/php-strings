@@ -227,6 +227,9 @@ class StringTest extends TestCase
         $this->assertTrue($string->startsWith('king'));
         $this->assertTrue($string->startsWith(['king', 'queen']));
         $this->assertFalse($string->endsWith(['prince', 'princess']));
+
+        $string2 = Stringo::from('22');
+        $this->assertTrue($string2->startsWith(22));
     }
 
     public function testCanCastToInteger() : void

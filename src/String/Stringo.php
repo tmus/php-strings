@@ -170,8 +170,8 @@ class Stringo
          * If the strpos of a value is zero, it must occur
          * at the beginning of the string.
          */
-        foreach($values as $value) {
-            if (strpos($this, $value) === 0) {
+        foreach ($values as $value) {
+            if (strpos($this, (string) $value) === 0) {
                 return true;
             }
         }
