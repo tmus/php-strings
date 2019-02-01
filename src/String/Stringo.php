@@ -6,21 +6,29 @@ class Stringo
 {
     /**
      * The string held by this class.
+     *
+     * @var string
      */
     protected $string;
 
     /**
      * Construct.
+     *
+     * @param mixed $string The string to manipilate.
      */
     public function __construct($string)
     {
-        $this->string = $string;
+        $this->string = (string) $string;
     }
 
     /**
      * Create a new string object. Allows easy method chaining:
      *
      *   `Stringo::from('test')->capitalize();`
+     *
+     * @param mixed $string The string to manipulate.
+     *
+     * @return self
      */
     public static function from($string) : self
     {
@@ -29,6 +37,10 @@ class Stringo
 
     /**
      * Returns the grapheme at the given position.
+     *
+     * @param int $position The position of the grapheme that should be returned.
+     *
+     * @return self
      */
     public function at(int $position) : self
     {
@@ -38,6 +50,10 @@ class Stringo
 
     /**
      * Removes the grapheme at the given position.
+     *
+     * @param int $position The position of the grapheme to remove.
+     *
+     * @return self
      */
     public function removeGrapheme(int $position) : self
     {
@@ -48,6 +64,8 @@ class Stringo
 
     /**
      * Turns a string into lowercase with an uppercase first letter.
+     *
+     * @return self
      */
     public function capitalize() : self
     {
@@ -57,6 +75,8 @@ class Stringo
 
     /**
      * Rule Britannia!
+     *
+     * @return self
      */
     public function capitalise() : self
     {
@@ -65,6 +85,8 @@ class Stringo
 
     /**
      * Returns an array of the letters that make up the array.
+     *
+     * @return array
      */
     public function graphemes() : array
     {
@@ -82,6 +104,10 @@ class Stringo
 
     /**
      * Determine if a string contains a substring.
+     *
+     * @param array|mixed $values The values to check the string for.
+     *
+     * @return bool
      */
     public function contains($values) : bool
     {
@@ -100,6 +126,10 @@ class Stringo
 
     /**
      * Determine if a string matches a given regex pattern.
+     *
+     * @param string $regex The regular expression to validate the string against.
+     *
+     * @return bool
      */
     public function matches(string $regex) : bool
     {
@@ -112,6 +142,8 @@ class Stringo
 
     /**
      * Turns a string into lowercase.
+     *
+     * @return self
      */
     public function downcase() : self
     {
@@ -122,6 +154,10 @@ class Stringo
 
     /**
      * Slices a string into two pieces at a position.
+     *
+     * @param int $position The position to split the string on.
+     *
+     * @return array
      */
     public function slice(int $position) : array
     {
@@ -136,6 +172,8 @@ class Stringo
 
     /**
      * Turns a string into lowercase.
+     *
+     * @return self
      */
     public function lowercase() : self
     {
@@ -145,6 +183,10 @@ class Stringo
     /**
      * Repeat a string a number of times. A `$times` of zero returns an
      * empty string.
+     *
+     * @param int $times The number of strings to join together.
+     *
+     * @return self
      */
     public function duplicate(int $times = 2) : self
     {
@@ -159,6 +201,10 @@ class Stringo
 
     /**
      * Determine if a string starts with a given value.
+     *
+     * @param array|mixed $values The values to check.
+     *
+     * @return bool
      */
     public function startsWith($values) : bool
     {
@@ -166,10 +212,8 @@ class Stringo
             $values = [$values];
         }
 
-        /**
-         * If the strpos of a value is zero, it must occur
-         * at the beginning of the string.
-         */
+        // If the strpos of a value is zero, it must occur
+        // at the beginning of the string.
         foreach ($values as $value) {
             if (strpos($this, (string) $value) === 0) {
                 return true;
@@ -181,6 +225,10 @@ class Stringo
 
     /**
      * Determine if a string ends with a given value.
+     *
+     * @param array|mixed $values The values to check.
+     *
+     * @return bool
      */
     public function endsWith($values) : bool
     {
@@ -190,12 +238,10 @@ class Stringo
             $values = [$values];
         }
 
-        /**
-         * For each value passed, subtract it's length from the length of the string.
-         * If this equals the strrpos of the passed value in the object string, then
-         * it is a match.
-         */
-        foreach($values as $value) {
+        // For each value passed, subtract it's length from the length of the string.
+        // If this equals the strrpos of the passed value in the object string, then
+        // it is a match.
+        foreach ($values as $value) {
             $endIndex = $thisLength - strlen($value);
             $position = strrpos($this, (string) $value);
 
@@ -209,14 +255,20 @@ class Stringo
 
     /**
      * Determine if two strings are equivalent.
+     *
+     * @param string $string The string to compare against.
+     *
+     * @return bool
      */
-    public function equivalentTo(self $string) : bool
+    public function equivalentTo(string $string) : bool
     {
         return (string) $this === (string) $string;
     }
 
     /**
      * Returns the first letter of a string.
+     *
+     * @return self
      */
     public function first() : self
     {
@@ -225,6 +277,8 @@ class Stringo
 
     /**
      * Returns the last letter of a string.
+     *
+     * @return self
      */
     public function last() : self
     {
@@ -233,6 +287,8 @@ class Stringo
 
     /**
      * Returns the length of the string.
+     *
+     * @return int
      */
     public function length() : int
     {
@@ -241,6 +297,12 @@ class Stringo
 
     /**
      * Pads a string to a desired length.
+     *
+     * @param int    $amount The length to pad the string by.
+     * @param string $string The string to pad the string with.
+     * @param string $side   The side of the string to pad.
+     *
+     * @return self
      */
     public function pad(int $amount, string $string = ' ', string $side = STR_PAD_LEFT) : self
     {
@@ -249,6 +311,11 @@ class Stringo
 
     /**
      * Pads a string from the left.
+     *
+     * @param int    $amount The length to pad the string by.
+     * @param string $string The string to pad the string with.
+     *
+     * @return self
      */
     public function padLeft(int $amount, string $string = ' ') : self
     {
@@ -257,6 +324,11 @@ class Stringo
 
     /**
      * Pads a string from the right.
+     *
+     * @param int    $amount The length to pad the string by.
+     * @param string $string The string to pad the string with.
+     *
+     * @return self
      */
     public function padRight(int $amount, string $string = ' ') : self
     {
@@ -265,6 +337,8 @@ class Stringo
 
     /**
      * Reverses the string.
+     *
+     * @return self
      */
     public function reverse() : self
     {
@@ -273,6 +347,10 @@ class Stringo
 
     /**
      * Split the string into an array.
+     *
+     * @param string $character The character to split the string on.
+     *
+     * @return array
      */
     public function split(string $character = ' ') : array
     {
@@ -280,7 +358,7 @@ class Stringo
 
         $returnedArray = [];
 
-        foreach($array as $value) {
+        foreach ($array as $value) {
             if ($value !== '') {
                 $returnedArray[] = new self($value);
             }
@@ -291,6 +369,10 @@ class Stringo
 
     /**
      * Returns an array of the words in a string.
+     *
+     * @param string $character The character to split the string on.
+     *
+     * @return array
      */
     public function words(string $character = ' ') : array
     {
@@ -299,6 +381,8 @@ class Stringo
 
     /**
      * Returns the first word in a string.
+     *
+     * @return self
      */
     public function firstWord() : self
     {
@@ -307,6 +391,8 @@ class Stringo
 
     /**
      * Returns the last word in a string.
+     *
+     * @return self
      */
     public function lastWord() : self
     {
@@ -319,6 +405,8 @@ class Stringo
 
     /**
      * Casts a string to an integer.
+     *
+     * @return int
      */
     public function toInteger() : int
     {
@@ -327,6 +415,8 @@ class Stringo
 
     /**
      * Converts a string to uppercase.
+     *
+     * @return self
      */
     public function uppercase() : self
     {
@@ -335,6 +425,8 @@ class Stringo
 
     /**
      * Converts a string to uppercase.
+     *
+     * @return self
      */
     public function upcase() : self
     {
@@ -343,6 +435,8 @@ class Stringo
 
     /**
      * Determine if a string is empty.
+     *
+     * @return bool
      */
     public function isEmpty() : bool
     {
@@ -351,6 +445,8 @@ class Stringo
 
     /**
      * Determine if a string is not empty.
+     *
+     * @return bool
      */
     public function isNotEmpty() : bool
     {
@@ -359,8 +455,12 @@ class Stringo
 
     /**
      * Generates a random string.
+     *
+     * @param int $length The length of the string to generate.
+     *
+     * @return self
      */
-    public function generateRandom($length = 32) : self
+    public function generateRandom(int $length = 32) : self
     {
         $string = bin2hex(random_bytes($length));
         $string = substr($string, 0, $length);
@@ -369,6 +469,11 @@ class Stringo
 
     /**
      * Formats the string nicely for a headline or subtitle.
+     *
+     * @param bool  $all            Whether or not to apitalise every word.
+     * @param array $nonCapitalized A custom array of words that ignore capitalisation.
+     *
+     * @return self
      */
     public function titleCase(bool $all = false, array $nonCapitalized = null) : self
     {
@@ -383,9 +488,12 @@ class Stringo
         $toLower = $nonCapitalized
             ?? ['A', 'An', 'And', 'The', 'But', 'For', 'Or', 'Of', 'Nor'];
 
-        $words = array_map(function ($word) use ($toLower) {
-            return in_array($word, $toLower) ? strtolower($word) : $word;
-        }, $ucwords->split());
+        $words = array_map(
+            function ($word) use ($toLower) {
+                return in_array($word, $toLower) ? strtolower($word) : $word;
+            },
+            $ucwords->split()
+        );
 
         $words = implode(' ', $words);
 
@@ -394,6 +502,8 @@ class Stringo
 
     /**
      * Remove whitespace from both sides of the string.
+     *
+     * @return self
      */
     public function trim() : self
     {
@@ -402,6 +512,8 @@ class Stringo
 
     /**
      * Remove whitespace from the left side of the string.
+     *
+     * @return self
      */
     public function leftTrim() : self
     {
@@ -410,6 +522,8 @@ class Stringo
 
     /**
      * Remove whitespace from the right side of the string.
+     *
+     * @return self
      */
     public function rightTrim() : self
     {
@@ -418,12 +532,19 @@ class Stringo
 
     /**
      * Converts a string to a `snake_case` representation.
+     *
+     * @param string $character The character to place between words.
+     *
+     * @return self
      */
     public function snake(string $character = '_') : self
     {
-        $string = preg_replace_callback('/[A-Z]/', function ($match) use ($character) {
-            return $character . $match[0];
-        }, (string) $this);
+        $string = preg_replace_callback(
+            '/[A-Z]/', function ($match) use ($character) {
+                return $character . $match[0];
+            },
+            (string) $this
+        );
 
         $string = new self($string);
 
@@ -436,6 +557,8 @@ class Stringo
 
     /**
      * Converts a string to a `kebab-case` representation.
+     *
+     * @return self
      */
     public function kebab() : self
     {
@@ -444,6 +567,8 @@ class Stringo
 
     /**
      * Returns the object as a string.
+     *
+     * @return string
      */
     public function __toString() : string
     {
@@ -456,8 +581,13 @@ class Stringo
      *
      *   `Stringo::from('asd')->capitalize()` can be written as
      *   `Stringo::fromCapitalize('asd')`.
+     *
+     * @param string $name      The name of the dynamic method called.
+     * @param array  $arguments The arguments to pass to the call.
+     *
+     * @return self
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic($name, $arguments) : self
     {
         $method = strtolower(str_replace('from', '', $name));
         $value = $arguments[0] ?? null;
